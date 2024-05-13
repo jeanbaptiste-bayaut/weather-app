@@ -47,22 +47,10 @@
                 </div>
             </div>
         </div>
-        <h3>Hourly Forecast</h3>
         <div class="hourly">
             <%  allWeather.hourly.forEach(hour => {%>
                 <article>
-                    <p><%= new Date(hour.dt * 1000).getUTCHours() %>h</p>
-                    <i class="fa-solid <%= weatherIcons.find(elt => elt.type.toLowerCase() === hour.weather[0].main.toLowerCase()).icon %> weather-icon icon-hourly"></i>
-                    <p class="temp"><%= Math.round(hour.temp) %> °C</p>
-                    <small>Humidity</small>
-                    <p class="humidity"><%= hour.humidity %> %</p>
-                    <small>Wind</small>
-                    <p class="wind"><%= hour.wind_speed %> km/h</p>
-                    <% if(hour.rain){ %>
-                    <small>Rain</small>
-                    <p class="rain">
-                        <%= hour.rain['1h'] %> mm/h</p>
-                        <%}%>
+                    <p>heure : <%= hour.dt %></p>
                 </article>
                 <%})%>
         </div>

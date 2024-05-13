@@ -11,7 +11,7 @@ body {
 
 .card {
     width: 99%;
-    max-width: 470px;
+    max-width: 1024px;
     background: linear-gradient(135deg, #00feba, #5b548a);
     color: #ffff;
     margin: 100px auto 0;
@@ -23,7 +23,7 @@ body {
 .search {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center ;
 }
 
@@ -38,6 +38,21 @@ body {
     flex: 1;
     margin-right: 16px;
     font-size: 18px;
+}
+
+.search select {
+    border: 0;
+    outline: 0;
+    background: #ebfffc;
+    color: #555;
+    padding: 10px 25px;
+    height: 60px;
+    border-radius: 30px;
+    flex: 1;
+    margin-right: 16px;
+    font-size: 0.8em;
+    max-width: 250px;
+    padding: 5px;
 }
 
 .search button {
@@ -99,4 +114,51 @@ body {
 
 .temp-details p {
     margin-inline: 10px;
+}
+
+.hourly {
+    display: flex;
+    margin-top: 2em;
+    overflow-x: auto;
+    padding: 10px;
+}
+
+.hourly ::-webkit-scrollbar {
+    height: 4px;
+    width: 100px;
+    border-radius: 10px;
+  }
+  
+.hourly ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+.hourly ::-webkit-scrollbar-thumb {
+    background: #c6c5c5;
+    border-radius: 10px;
+  }
+  
+.hourly ::-webkit-scrollbar-thumb:hover {
+    background: #cbcbcb;
+    border-radius: 10px;
+  }
+
+.hourly article {
+    min-width: 100px;
+    border: 1px solid white;
+    border-radius: 15px;
+
+}
+
+.hourly .hour {
+    font-weight: 600;
+    font-size: 1.2em;
+}
+
+.hourly article p{
+    margin: 10px 0;
+}
+
+.icon-hourly {
+    font-size: 3em;
 }
