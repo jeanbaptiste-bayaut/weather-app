@@ -7,7 +7,15 @@
 
 body {
     background: 2222;
-} 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  #map {
+    height: 600px;
+    width: 1024px;
+    border-radius: 0 0 20px 20px;
+  }
 
 .card {
     width: 99%;
@@ -15,9 +23,10 @@ body {
     background: linear-gradient(135deg, #00feba, #5b548a);
     color: #ffff;
     margin: 100px auto 0;
-    border-radius: 20px;
+    border-radius: 20px 20px 0 0;
     padding: 40px 35px;
     text-align: center;
+    border: 1px solid white;
 }
 
 .search {
@@ -85,6 +94,15 @@ body {
     font-weight: 400;
     margin-top: 20px;
 }
+
+.weather .icon-temp {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-inline: 20%;
+}
+
+
 
 .details {
     display: flex;
@@ -165,6 +183,35 @@ body {
 
 .icon-hourly {
     font-size: 3em;
+}
+
+.daily-forecast article, .twodays-forecast article {
+    width: 100%;
+}
+
+.twodays-forecast .icon-hourly {
+    font-size: 5em;
+}
+
+.twodays-forecast .details{
+    margin-top: 20px;
+}
+
+.twodays-forecast .details .details-elt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.twodays-forecast .other-details {
+    display: flex;
+    justify-content: space-between;
+    margin-inline: 20%;
+}
+
+.twodays-forecast .details-elt i{
+    font-size: 1.2em;
 }
 
 .accordion {

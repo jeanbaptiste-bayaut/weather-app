@@ -1,10 +1,20 @@
-const { Router } = require ('express')
-const mainController = require('../controllers/mainController')
+import { Router } from 'express';
+import { mainController } from '../controllers/mainController.js';
+import { authController } from '../controllers/authController.js';
+import { signupController } from '../controllers/signupController.js';
 
-const router = Router()
+export const router = Router();
 
 router.get('/', mainController.index);
+router.get('/signup', signupController.index);
+router.get('/login', authController.showForm);
+router.get('/forecast', mainController.forecastHome);
+router.get('/forecast/:city', mainController.showWeatherCity);
 
-router.post('/', mainController.showWeather);
+router.post('/signup', signupController.signup)
+router.post('/login', authController.login);
+router.post('/forecast', mainController.showWeather);
 
-module.exports = router
+
+
+// router.post('/', mainController.showWeather);

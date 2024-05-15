@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <script
+      src="https://kit.fontawesome.com/2f4c0e8957.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="card">
+      <div class="search">
+        <form method="POST">
+          <input
+            type="text"
+            placeholder="enter city name"
+            name="city"
+            spellcheck="false"
+          />
+          <select name="country_code">
+            <option value="">--Choose a Country Code</option>
+            <% countries.forEach(country => { %>
+            <option value="<%= country.code %>">
+              <%= country.code %> - <%= country.name %>
+            </option>
+            <% }) %>
+          </select>
+          <button>
+            <i
+              class="fa-solid fa-magnifying-glass fa-xl"
+              style="color: #77797e"
+            ></i>
+          </button>
+        </form>
+      </div>
+    </div>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+      // Initialize the map
+      var map = L.map('map').setView([46.9, 2.633333], 6);
+
+      // Add a base map layer
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
+
+      // Add a marker for a specific location
+      const marker0 = L.marker([48.866667, 2.333333]).addTo(map);
+      const marker1 = L.marker([43.604652, 1.444209]).addTo(map); // Toulouse
+      const marker2 = L.marker([45.75, 4.85]).addTo(map); // Lyon
+      const marker3 = L.marker([44.837789, -0.57918]).addTo(map); // Bordeaux
+      const marker4 = L.marker([43.296346, 5.369889]).addTo(map); // Marseille
+      const marker5 = L.marker([50.62925, 3.057256]).addTo(map); // Lille
+
+      const markers = [{city: 'paris', marker: marker0}, {city:'toulouse', marker: marker1}, {city:'lyon', marker: marker2}, {city:'bordeaux', marker: marker3}, {city:'marseille', marker: marker4}, {city:'lille', marker: marker5}]
+      // Fetch weather data from OpenWeatherMap API
+
+      for(let i = 0; i < markers.length; i++) {
+        fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${markers[i].city}&appid=4e91f79aa0da851077b37cc931e6f94a`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          // Display weather information in a popup
+          markers[i].marker.bindPopup(
+            `
+            Weather in ${data.name}: ${data.weather[0].description}
+            <a href="http://localhost:3000/forecast/${data.name.toLowerCase()}">Forecast</a>
+            `
+            );
+        });
+      }
+
+
+
+
+
+
+    //   fetch(
+    //     'https://api.openweathermap.org/data/2.5/weather?q=france&appid=4e91f79aa0da851077b37cc931e6f94a'
+    //   )
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //       // Display weather information in a popup
+    //       marker.bindPopup(`Weather: ${data.weather[0].description}`);
+    //     });
+
+    //   // Ville de Toulouse
+    //   fetch(
+    //     'https://api.openweathermap.org/data/2.5/weather?q=Toulouse,fr&appid=4e91f79aa0da851077b37cc931e6f94a'
+    //   )
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //       marker1.bindPopup(
+    //         `Weather in Toulouse: ${data.weather[0].description}`
+    //       );
+    //     });
+
+    //   // Ville de Lyon
+    //   fetch(
+    //     'https://api.openweathermap.org/data/2.5/weather?q=Lyon,fr&appid=4e91f79aa0da851077b37cc931e6f94a'
+    //   )
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //       marker2.bindPopup(`Weather in Lyon: ${data.weather[0].description}`);
+    //     });
+
+    //   // Ville de Bordeaux
+    //   fetch(
+    //     'https://api.openweathermap.org/data/2.5/weather?q=Bordeaux,fr&appid=4e91f79aa0da851077b37cc931e6f94a'
+    //   )
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //       marker3.bindPopup(
+    //         `Weather in Bordeaux: ${data.weather[0].description}`
+    //       );
+    //     });
+
+    //   // Ville de Marseille
+    //   fetch(
+    //     'https://api.openweathermap.org/data/2.5/weather?q=Marseille,fr&appid=4e91f79aa0da851077b37cc931e6f94a'
+    //   )
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //       marker4.bindPopup(
+    //         `Weather in Marseille: ${data.weather[0].description}`
+    //       );
+    //     });
+
+    //   // Ville de Lille
+    //   fetch(
+    //     'https://api.openweathermap.org/data/2.5/weather?q=Lille,fr&appid=4e91f79aa0da851077b37cc931e6f94a'
+    //   )
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //       marker5.bindPopup(`Weather in Lille: ${data.weather[0].description}`);
+    //     });
+    </script>
+  </body>
+</html>

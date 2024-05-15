@@ -38,4 +38,4 @@ const currentWeather = {
 
 }
 
-module.exports = currentWeather
+export { currentWeather }

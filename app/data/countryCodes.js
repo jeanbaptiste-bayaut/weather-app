@@ -249,4 +249,4 @@ const countryCodes = [
     { code: "ZW", name: "Zimbabwe" }
   ];
 
-module.exports = countryCodes
+export { countryCodes }

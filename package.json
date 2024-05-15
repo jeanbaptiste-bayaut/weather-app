@@ -3,14 +3,19 @@
   "version": "1.0.0",
   "description": "You can try it cloning the repo and launch the index.html file with live server",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev": "node --watch index.js"
+    "dev": "node --watch index.js",
+    "db:reset": "psql -p 5433 -d weatherapp -U weatherapp -f ./app/data/db/tables.sql"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "pg": "^8.11.5",
+    "sequelize": "^6.37.3"
   }
 }

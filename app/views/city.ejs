@@ -40,14 +40,19 @@
       </div>
       <div class="weather">
         <h2 class="city"><%= cityWeather.name %></h2>
-        <i class="fa-solid <%= icon.icon %> weather-icon"></i>
-        <p class="description"><%= cityWeather.weather[0].description %></p>
-        <h1 class="temp"><%= Math.round(cityWeather.main.temp) %> °C</h1>
-        <div class="temp-details">
-          <p>min: <%= Math.round(cityWeather.main.temp_min) %> °C</p>
-          <p>max: <%= Math.round(cityWeather.main.temp_max) %> °C</p>
-        </div>
-
+        <section class="icon-temp">
+            <article>
+            <i class="fa-solid <%= icon.icon %> weather-icon"></i>
+            <p class="description"><%= cityWeather.weather[0].description %></p>
+        </article>
+        <article>
+            <h1 class="temp"><%= Math.round(cityWeather.main.temp) %> °C</h1>
+            <div class="temp-details">
+              <p>min: <%= Math.round(cityWeather.main.temp_min) %> °C</p>
+              <p>max: <%= Math.round(cityWeather.main.temp_max) %> °C</p>
+            </div>
+        </article>
+        </section>
         <div class="details">
           <div class="col">
             <i class="fa-solid fa-water fa-2xl"></i>
@@ -105,7 +110,7 @@
             </div>
           </div>
         </div>
-        <div class="hourly accordion-item">
+        <div class="hourly daily-forecast accordion-item">
           <h3 class="accordion-header">
             <button
               class="accordion-button collapsed"
@@ -115,7 +120,7 @@
               aria-expanded="false"
               aria-controls="collapseTwo"
             >
-              Daily
+              8 days Forecast
             </button>
           </h3>
           <div
@@ -124,26 +129,86 @@
             data-bs-parent="#accordionForecast"
           >
             <div class="accordion-body">
-              <% allWeather.hourly.forEach(hour => {%>
+              <% allWeather.daily.forEach(day => {%>
               <article>
-                <p><%= new Date(hour.dt * 1000).getUTCHours() %>h</p>
+                <p><%= new Date(day.dt * 1000).getUTCDate()  %>/<%= new Date(day.dt * 1000).getMonth()  %></p>
                 <i
-                  class="fa-solid <%= weatherIcons.find(elt => elt.type.toLowerCase() === hour.weather[0].main.toLowerCase()).icon %> weather-icon icon-hourly"
+                  class="fa-solid <%= weatherIcons.find(elt => elt.type.toLowerCase() === day.weather[0].main.toLowerCase()).icon %> weather-icon icon-hourly"
                 ></i>
-                <p class="temp"><%= Math.round(hour.temp) %> °C</p>
+                <p class="temp"><%= Math.round(day.temp.day) %> °C</p>
                 <small>Humidity</small>
-                <p class="humidity"><%= hour.humidity %> %</p>
+                <p class="humidity"><%= day.humidity %> %</p>
                 <small>Wind</small>
-                <p class="wind"><%= hour.wind_speed %> km/h</p>
-                <% if(hour.rain){ %>
+                <p class="wind"><%= day.wind_speed %> km/h</p>
+                <% if(day.rain){ %>
                 <small>Rain</small>
-                <p class="rain"><%= hour.rain['1h'] %> mm/h</p>
+                <p class="rain"><%= day.rain %> mm/h</p>
                 <%}%>
               </article>
               <%})%>
             </div>
           </div>
         </div>
+        <div class="hourly twodays-forecast accordion-item">
+            <h3 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseThree"
+                aria-expanded="false"
+                aria-controls="collapseThree"
+              >
+                48H Forecast
+              </button>
+            </h3>
+            <div
+              id="collapseThree"
+              class="accordion-collapse collapse"
+              data-bs-parent="#accordionForecast"
+            >
+              <div class="accordion-body">
+                <% allWeather.daily.slice(0,3).forEach(day => {%>
+                <article>
+                  <p><%= new Date(day.dt * 1000).getUTCDate()  %>/<%= new Date(day.dt * 1000).getMonth()  %></p>
+                  <i
+                    class="fa-solid <%= weatherIcons.find(elt => elt.type.toLowerCase() === day.weather[0].main.toLowerCase()).icon %> weather-icon icon-hourly"
+                  ></i>
+                  <p class="temp"><%= Math.round(day.temp.day) %> °C</p>
+                  <div class="details">
+                    <div class="details-elt">
+                        <i class="fa-solid fa-water fa-2xl" aria-hidden="true"></i>
+                        <p class="humidity"><%= day.humidity %> %</p>
+                    </div>
+                    <div class="details-elt">
+                        <i class="fa-solid fa-wind fa-2xl" aria-hidden="true"></i>
+                        <p class="wind"><%= day.wind_speed %> km/h</p>
+                    </div>
+                    <% if(day.rain){ %>
+                    <div class="details-elt">
+                        <i class="fa-solid fa-droplet fa-2xl" aria-hidden="true"></i>
+                        <p class="rain"><%= day.rain %> mm/h</p>
+                    </div>
+                  <%}%>
+                </div>
+                <div class="other-details">
+                    <div class="sunrise">
+                        <i class="fa-regular fa-sun"></i>
+                        <small><%= new Date(day.sunrise * 1000).toLocaleTimeString('fr-FR') %></small>
+                    </div>
+                    <div class="sunset">
+                        <i class="fa-regular fa-moon"></i>
+                        <small><%= new Date(day.sunset * 1000).toLocaleTimeString('fr-FR') %></small>
+                    </div>
+                </div>
+                <small class="summary">
+                    <%= day.summary %>
+                </small>
+                </article>
+                <%})%>
+              </div>
+            </div>
+          </div>
       </div>
     </div>
   </body>

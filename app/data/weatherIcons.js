@@ -9,4 +9,4 @@ const weatherIcons = [
     { type: "Fog", icon: "fa-smog" }
 ];
 
-module.exports = weatherIcons
+export { weatherIcons }
