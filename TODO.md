@@ -1,5 +1,10 @@
 ### Authentification
 
+## Carte metéo
+
+[] réfléchir comment insérer les icones
+    - envoyer à la vue le tableau de corresopndance icon vs description ?
+
 ## Sign UP
 [] hash du password et vérification si l'utilisateur existe en bas
 [] rajouter les regex pour email et pwd
