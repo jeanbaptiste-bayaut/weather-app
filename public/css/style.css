@@ -98,7 +98,13 @@ body {
     display: flex;
     align-items: center;
     text-align: left;
+    display: flex;
+    justify-content: center;
     gap: 10px;
+}
+
+.col p {
+    margin: 0;
 }
 
 .col img {
@@ -118,8 +124,6 @@ body {
 
 .hourly {
     display: flex;
-    margin-top: 2em;
-    overflow-x: auto;
     padding: 10px;
 }
 
@@ -161,4 +165,41 @@ body {
 
 .icon-hourly {
     font-size: 3em;
+}
+
+.accordion {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2em;
+}
+
+.accordion-item {
+    display: flex;
+    flex-direction: column;
+    background-color: none;
+    background: linear-gradient(135deg, #00feba, #5b548a);
+}
+
+.accordion-body {
+    display: flex;
+    overflow-x: auto;
+    background: linear-gradient(135deg, #00feba, #5b548a);
+}
+
+.accordion-body article {
+color: white;
+}
+
+.accordion button {
+    width: 100%;
+    border: 1px solid white;
+    margin-bottom: 10px;
+    padding: 10px;
+    background: #6fe1cb;
+    font-size: 1.2em;
+    color: white;
+}
+
+.accordion-button:not(.collapsed) {
+    background: #6fe1cb;
 }
