@@ -5,6 +5,11 @@
     box-sizing: border-box;
 }
 
+a {
+    text-decoration: none;
+    color: white;
+}
+
 body {
     background: 2222;
     display: flex;
@@ -29,10 +34,14 @@ body {
     border: 1px solid white;
 }
 
+.header-icons {
+    font-size: 2em;
+}
+
 .search {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center ;
 }
 
