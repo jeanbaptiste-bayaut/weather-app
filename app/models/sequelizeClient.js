@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 
 function getConnexion() {
-    return new Sequelize(process.env.PG_URL, {
+    return new Sequelize('postgres://weatherapp:weatherapp@postgres:5432/weatherapp', {
         define: {
             underscored: true,
         },
